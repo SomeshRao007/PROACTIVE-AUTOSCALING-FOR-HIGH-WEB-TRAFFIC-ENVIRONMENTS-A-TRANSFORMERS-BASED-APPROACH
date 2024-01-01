@@ -1,0 +1,99 @@
+sudo systemctl daemon-reload
+sudo systemctl enable cri-docker.service
+sudo systemctl enable --now cri-docker.socket
+
+
+
+minikube start --network-plugin=cni --cni=calico
+
+minikube start --nodes 2 -p multinode-demo
+
+kubectl get nodes
+
+minikube status -p multinode-demo
+
+
+
+grafana pass oU1C6bVnbl
+
+
+docker system prune --volumes
+sudo systemctl restart docker
+minikube delete
+minikube start --driver=docker
+
+
+
+
+
+EKS
+
+# for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+
+# (Optional) Verify checksum
+curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+
+
+
+
+
+
+
+
+
+
+
+if prometheus not working 
+
+the instance.
+Install Prometheus. SSH into the EC2 instance and run the following commands:
+
+sudo apt update
+sudo apt install prometheus
+
+Configure Prometheus. Edit the Prometheus configuration file at /etc/prometheus/prometheus.yml. You need to specify the targets that you want Prometheus to scrape. For example, to scrape the metrics from the EC2 instance itself, you would add the following line to the configuration file:
+
+scrape_configs:
+  - job_name: "localhost"
+    static_targets:
+      - "localhost:9100"
+
+Start Prometheus. Run the following command to start Prometheus:
+
+sudo systemctl start prometheus
+
+
+
+
+
+
+
+
+
+
+
+
+These limits can actually (safely in most cases) be increased if needed ... If you are seeing the error message indicating reaching the limit when you run a new application like in your case, then it's most likely that fs.inotify.max_user_instances is the one that is causing this ... You can temporarily increase it to e.g. 256 like so:
+
+sudo sysctl -w fs.inotify.max_user_instances=256
+This will take effect immediately but will be reset after reboot ... It's advised for testing the stability of the system first ... If, however, you decide that you need that set permanently and survive reboots, then you can edit /etc/sysctl.conf and add it as a new line like so:
+
+fs.inotify.max_user_instances=256
+
+
+
+
+
+
+
+
+

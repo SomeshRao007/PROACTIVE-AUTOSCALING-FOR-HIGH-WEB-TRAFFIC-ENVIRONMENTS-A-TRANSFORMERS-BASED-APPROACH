@@ -1,0 +1,97 @@
+KUBECTL COMMANDS 
+
+aws eks --region us-east-1 describe-cluster --name KubeP --query cluster.status
+
+aws eks --region us-east-1 update-kubeconfig --name KubeP 
+
+
+
+aws eks create-cluster --region us-east-1 --name KubeP --kubernetes-version 1.27 --role-arn arn:aws:iam::469563970583:role/EKSclusterROLE --resources-vpc-config subnetIds=subnet-0e255387c8816457c,subnet-0699af536d4251c9e,subnet-09d16e28267301047,subnet-082f96eb4e8dac0e7,securityGroupIds=sg-06ccf898e1f60b204
+
+
+aws eks update-kubeconfig --region us-east-1 --name KubeP
+
+
+kubectl get svc
+
+
+
+
+
+prometheus
+
+C:\Users\cokas>aws amp create-workspace --alias my-promo-workspace
+{
+    "workspaceId": "ws-309d4741-99d4-4a0f-8b53-509f3d9815fc",
+    "arn": "arn:aws:aps:us-east-1:469563970583:workspace/ws-309d4741-99d4-4a0f-8b53-509f3d9815fc",
+    "status": {
+        "statusCode": "CREATING"
+    },
+    "tags": {}
+}
+
+helm upgrade prometheus-for-amp prometheus-community/prometheus -n prometheus -f ./amp_ingest_override_values.yaml
+helm upgrade my-promo-workspace prometheus-community/prometheus -n prometheus-namespace -f my_prometheus_values.yaml
+
+
+
+
+links I have used for setting eks 
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html
+
+https://docs.aws.amazon.com/grafana/latest/userguide/getting-started-with-AMG.html
+
+distrubuted load testing in google cloud 
+https://github.com/mosesliao/kubernetes-locust
+
+
+
+
+
+ECS PUSH
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 469563970583.dkr.ecr.us-east-1.amazonaws.com
+
+docker images
+
+docker tag 6d0811c7527b 469563970583.dkr.ecr.us-east-1.amazonaws.com/someshecsp:latest
+
+docker push 469563970583.dkr.ecr.us-east-1.amazonaws.com/someshecsp:latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
