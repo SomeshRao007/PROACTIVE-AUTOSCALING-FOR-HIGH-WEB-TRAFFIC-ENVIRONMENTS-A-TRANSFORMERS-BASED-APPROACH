@@ -1,4 +1,4 @@
-# PROACTIVE-AUTOSCALING-FOR-HIGH-WEB-TRAFFIC-ENVIRONMENTS-A-TRANSFORMERS-BASED-APPROACH
+# PROACTIVE AUTOSCALING FOR HIGH WEB TRAFFIC ENVIRONMENTS A TRANSFORMERS BASED APPROACH
 
 The evolution of software architecture patterns has been significantly influenced by the emergence of microservices and container-based technologies. These advancements have improved the modularity of applications and the development, testing, scaling, and component replacement processes. However, sophisticated orchestration capabilities are required to manage these applications, which can comprise hundreds of microservices with intricate interdependencies. Many application developers are currently drawn to the cloud computing environment and are deploying their web applications on cloud data centres. Cloud computing has become the preferred deployment environment for web applications. Kubernetes, widely used for deploying web applications on cloud platforms, offers an auto-scaling functionality to adapt to changing client needs.
 
